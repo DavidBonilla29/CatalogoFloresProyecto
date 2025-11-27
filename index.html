@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florería Orlandito - Catálogo Digital</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>🌺 Florería Orlandito</h1>
+                </div>
+                <div class="contact-info">
+                    <p>📞 Tel: 55 1160 6332</p>
+                    <p>📍 Central de Abastos, Ayotla, Ixtapaluca</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Flores que Expresan Emociones</h2>
+            <p>Arreglos florales, frutales y detalles personalizados para cada ocasión especial</p>
+            <a href="#catalogo" class="btn">Ver Catálogo</a>
+        </div>
+    </section>
+
+    <!-- Catálogo -->
+    <section class="catalog" id="catalogo">
+        <div class="container">
+            <h2 class="section-title">Nuestro Catálogo</h2>
+            
+            <div class="categories">
+                <button class="category-btn active" data-category="all">Todos</button>
+                <button class="category-btn" data-category="ramos">Ramos</button>
+                <button class="category-btn" data-category="arreglos">Arreglos Especiales</button>
+                <button class="category-btn" data-category="frutales">Arreglos Frutales</button>
+                <button class="category-btn" data-category="ocasion">Por Ocasión</button>
+            </div>
+            
+            <div class="products">
+                <!-- Producto 1 - Rosas Rojas -->
+                <div class="product-card" data-category="ramos">
+                    <img src="img/rosas.jpg" alt="Ramo de Rosas Rojas" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Ramo de Rosas Rojas</h3>
+                        <p class="product-price">$350</p>
+                        <p class="product-description">Hermoso ramo de 12 rosas rojas, perfecto para expresar amor y pasión.</p>
+                        <a href="https://wa.me/5215511606332?text=Me%20interesa%20el%20Ramo%20de%20Rosas%20Rojas" class="btn" target="_blank">Pedir por WhatsApp</a>
+                    </div>
+                </div>
+                
+                <!-- Producto 2 - Centro de Mesa Elegante -->
+                <div class="product-card" data-category="arreglos">
+                    <img src="img/centro.jpg" alt="Centro de Mesa Elegante" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Centro de Mesa Elegante</h3>
+                        <p class="product-price">$550</p>
+                        <p class="product-description">Elegante centro de mesa con flores de temporada, ideal para eventos especiales.</p>
+                        <a href="https://wa.me/5215511606332?text=Me%20interesa%20el%20Centro%20de%20Mesa%20Elegante" class="btn" target="_blank">Pedir por WhatsApp</a>
+                    </div>
+                </div>
+                
+                <!-- Producto 3 - Canasta Frutal -->
+                <div class="product-card" data-category="frutales">
+                    <img src="img/frutal.jpeg" alt="Canasta Frutal Especial" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Canasta Frutal Especial</h3>
+                        <p class="product-price">$480</p>
+                        <p class="product-description">Deliciosa combinación de frutas de temporada en un arreglo especial para regalar.</p>
+                        <a href="https://wa.me/5215511606332?text=Me%20interesa%20la%20Canasta%20Frutal%20Especial" class="btn" target="_blank">Pedir por WhatsApp</a>
+                    </div>
+                </div>
+                
+                <!-- Producto 4 - Ramo Mixto -->
+                <div class="product-card" data-category="ramos">
+                    <img src="img/mixto.jpg" alt="Ramo Mixto de Temporada" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Ramo Mixto de Temporada</h3>
+                        <p class="product-price">$320</p>
+                        <p class="product-description">Colorido ramo con variedad de flores de temporada, perfecto para cualquier ocasión.</p>
+                        <a href="https://wa.me/5215511606332?text=Me%20interesa%20el%20Ramo%20Mixto%20de%20Temporada" class="btn" target="_blank">Pedir por WhatsApp</a>
+                    </div>
+                </div>
+                
+                <!-- Producto 5 - Arreglo Aniversario -->
+                <div class="product-card" data-category="ocasion">
+                    <img src="img/aniversario.jpg" alt="Arreglo para Aniversario" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Arreglo para Aniversario</h3>
+                        <p class="product-price">$420</p>
+                        <p class="product-description">Especialmente diseñado para celebrar aniversarios, con flores que simbolizan amor duradero.</p>
+                        <a href="https://wa.me/5215511606332?text=Me%20interesa%20el%20Arreglo%20para%20Aniversario" class="btn" target="_blank">Pedir por WhatsApp</a>
+                    </div>
+                </div>
+                
+                <!-- Producto 6 - Ramo Cumpleaños -->
+                <div class="product-card" data-category="ocasion">
+                    <img src="img/cumpleaños.jpg" alt="Ramo para Cumpleaños" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Ramo para Cumpleaños</h3>
+                        <p class="product-price">$380</p>
+                        <p class="product-description">Colorido y festivo, perfecto para celebrar un día especial con alegría y color.</p>
+                        <a href="https://wa.me/5215511606332?text=Me%20interesa%20el%20Ramo%20para%20Cumpleaños" class="btn" target="_blank">Pedir por WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Florería Orlandito</h3>
+                    <p>"Flores que transmiten emociones y sentimientos especiales"</p>
+                    <p>📍 Central de Abastos, Ayotla, Ixtapaluca, Estado de México</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Horarios de Atención</h3>
+                    <p>Lunes a Sábado: 8:00 am - 8:00 pm</p>
+                    <p>Domingo: 9:00 am - 6:00 pm</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>📞 Tel: 55 1160 6332</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1JPnqKKDWf/" target="_blank">📘 Facebook</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Florería Orlandito - Todos los derechos reservados</p>
+                <p>Desarrollado por TecnoFácil - "La tecnología al alcance de todos"</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filtrado de categorías
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remover clase active de todos los botones
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    // Agregar clase active al botón clickeado
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Mostrar/ocultar productos según categoría
+                    productCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
