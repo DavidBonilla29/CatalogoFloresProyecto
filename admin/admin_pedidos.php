@@ -1,4 +1,5 @@
 <?php
+require 'seguridad.php'; // Candado de seguridad
 require 'conexion.php';
 
 // --- CONSULTA 1: Para el formulario ---
@@ -38,6 +39,7 @@ $resultado_pedidos = $conexion->query($consulta_pedidos);
         <nav>
             <a href="admin_productos.php">Administrar Productos</a>
             <a href="admin_pedidos.php" class="active">Administrar Pedidos</a>
+            <a href="logout.php" style="background-color: #d32f2f; margin-left: 15px;">Cerrar Sesión</a>
         </nav>
     </header>
 
