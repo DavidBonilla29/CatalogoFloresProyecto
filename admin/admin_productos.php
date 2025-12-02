@@ -20,7 +20,7 @@ $resultado = $conexion->query($consulta);
         <h1>Panel de Administración</h1>
         <nav>
             <a href="admin_productos.php" class="active">Administrar Productos</a>
-            <a href="admin_pedidos.php">Administrar Pedidos</a>
+            <!--<a href="admin_pedidos.php">Administrar Pedidos</a>-->
             <a href="logout.php" style="background-color: #d32f2f; margin-left: 15px;">Cerrar Sesión</a>
         </nav>
     </header>
@@ -39,6 +39,9 @@ $resultado = $conexion->query($consulta);
             <label for="precio">Precio (ej. 350):</label>
             <input type="number" id="precio" name="precio" required>
 
+            <label for="cantidad">Cantidad en stock:</label>
+            <input type="number" id="cantidad" name="cantidad" required>
+
             <label for="imagen_url">Ruta de la Imagen (ej. img/ramo_rosas.jpg):</label>
             <input type="text" id="imagen_url" name="imagen_url">
 
@@ -56,6 +59,7 @@ $resultado = $conexion->query($consulta);
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Precio</th>
+                    <th>Cantidad en stock</th>
                     <th>Imagen</th> 
                     <th>Acciones</th>
                 </tr>
@@ -70,6 +74,8 @@ $resultado = $conexion->query($consulta);
                             <td><?php echo htmlspecialchars($fila['nombre']); ?></td>
                             <td><?php echo htmlspecialchars($fila['descripcion']); ?></td>
                             <td>$<?php echo $fila['precio']; ?></td>
+                            <td><?php echo $fila['cantidad']; ?></td>
+                            
                             
                             <td>
                                 <img src="../<?php echo htmlspecialchars($fila['imagen_url']); ?>" 

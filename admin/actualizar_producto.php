@@ -10,13 +10,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST['nombre'];
     $descripcion = $_POST['descripcion'];
     $precio = $_POST['precio'];
+    $cantidad= $_POST['cantidad'];
     $imagen_url = $_POST['imagen_url'];
 
     // 4. Preparar la consulta SQL de MODIFICACIÓN (Update)
-    $stmt = $conexion->prepare("UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, imagen_url = ? WHERE id_producto = ?");
+    $stmt = $conexion->prepare("UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, cantidad=?, imagen_url = ? WHERE id_producto = ?");
     
     // "ssisi" = string, string, integer, string, integer
-    $stmt->bind_param("ssisi", $nombre, $descripcion, $precio, $imagen_url, $id_producto);
+    $stmt->bind_param("ssiisi", $nombre, $descripcion, $precio,$cantidad, $imagen_url, $id_producto);
 
     // 5. Ejecutar y verificar
     if ($stmt->execute()) {
