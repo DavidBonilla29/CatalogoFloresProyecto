@@ -1,5 +1,8 @@
 <?php
+require 'seguridad.php'; // <--- EL CANDADO IMPORTANTE
 require 'conexion.php';
+
+// Consulta para llenar la tabla
 $consulta = "SELECT * FROM productos ORDER BY nombre ASC";
 $resultado = $conexion->query($consulta);
 ?>
@@ -18,6 +21,7 @@ $resultado = $conexion->query($consulta);
         <nav>
             <a href="admin_productos.php" class="active">Administrar Productos</a>
             <a href="admin_pedidos.php">Administrar Pedidos</a>
+            <a href="logout.php" style="background-color: #d32f2f; margin-left: 15px;">Cerrar Sesión</a>
         </nav>
     </header>
 
@@ -52,7 +56,8 @@ $resultado = $conexion->query($consulta);
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Precio</th>
-                    <th>Imagen</th> <th>Acciones</th>
+                    <th>Imagen</th> 
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -86,7 +91,8 @@ $resultado = $conexion->query($consulta);
             </tbody>
         </table>
 
-    </div></body>
+    </div>
+</body>
 </html>
 <?php
 $conexion->close();
