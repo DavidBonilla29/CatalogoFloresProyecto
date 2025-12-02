@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Florería Orlandito - Catálogo Digital</title>
+    
+    <link rel="icon" href="img/icono-flor.png" type="image/png">
+    
     <link rel="stylesheet" href="styles.css">
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=MXN"></script>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
@@ -22,7 +25,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h2>Flores que Expresan Emociones</h2>
@@ -31,7 +33,6 @@
         </div>
     </section>
 
-    <!-- Catálogo -->
     <section class="catalog" id="catalogo">
         <div class="container">
             <h2 class="section-title">Nuestro Catálogo</h2>
@@ -45,94 +46,81 @@
             </div>
             
             <div class="products">
-                <!-- Producto 1 - Rosas Rojas -->
                 <div class="product-card" data-category="ramos">
                     <img src="img/rosas.jpg" alt="Ramo de Rosas Rojas" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Ramo de Rosas Rojas</h3>
                         <p class="product-price">$350</p>
                         <p class="product-description">Hermoso ramo de 12 rosas rojas, perfecto para expresar amor y pasión.</p>
-                        <a href="https://wa.me/5215511606332?text=Me%20interesa%20el%20Ramo%20de%20Rosas%20Rojas" class="btn" target="_blank">Pedir por WhatsApp</a>
                         <button class="btn add-btn" onclick="agregarAlCarrito('Ramo de Rosas Rojas', 350)">
-    Agregar al Carrito 🛒
-</button>
+                            Agregar al Carrito 🛒
+                        </button>
                     </div>
                 </div>
                 
-                <!-- Producto 2 - Centro de Mesa Elegante -->
                 <div class="product-card" data-category="arreglos">
                     <img src="img/centro.jpg" alt="Centro de Mesa Elegante" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Centro de Mesa Elegante</h3>
                         <p class="product-price">$550</p>
                         <p class="product-description">Elegante centro de mesa con flores de temporada, ideal para eventos especiales.</p>
-                        <a href="https://wa.me/5215511606332?text=Me%20interesa%20el%20Centro%20de%20Mesa%20Elegante" class="btn" target="_blank">Pedir por WhatsApp</a>
                         <button class="btn add-btn" onclick="agregarAlCarrito('Centro de Mesa Elegante', 550)">
-    Agregar al Carrito 🛒
-</button>
+                            Agregar al Carrito 🛒
+                        </button>
                     </div>
                 </div>
                 
-                <!-- Producto 3 - Canasta Frutal -->
                 <div class="product-card" data-category="frutales">
                     <img src="img/frutal.jpeg" alt="Canasta Frutal Especial" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Canasta Frutal Especial</h3>
                         <p class="product-price">$480</p>
                         <p class="product-description">Deliciosa combinación de frutas de temporada en un arreglo especial para regalar.</p>
-                        <a href="https://wa.me/5215511606332?text=Me%20interesa%20la%20Canasta%20Frutal%20Especial" class="btn" target="_blank">Pedir por WhatsApp</a>
                         <button class="btn add-btn" onclick="agregarAlCarrito('Canasta Frutal Especial', 480)">
-    Agregar al Carrito 🛒
-</button>
+                            Agregar al Carrito 🛒
+                        </button>
                     </div>
                 </div>
                 
-                <!-- Producto 4 - Ramo Mixto -->
                 <div class="product-card" data-category="ramos">
                     <img src="img/mixto.jpg" alt="Ramo Mixto de Temporada" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Ramo Mixto de Temporada</h3>
                         <p class="product-price">$320</p>
                         <p class="product-description">Colorido ramo con variedad de flores de temporada, perfecto para cualquier ocasión.</p>
-                        <a href="https://wa.me/5215511606332?text=Me%20interesa%20el%20Ramo%20Mixto%20de%20Temporada" class="btn" target="_blank">Pedir por WhatsApp</a>
                         <button class="btn add-btn" onclick="agregarAlCarrito('Ramo Mixto de Temporada', 320)">
-    Agregar al Carrito 🛒
-</button>
+                            Agregar al Carrito 🛒
+                        </button>
                     </div>
                 </div>
                 
-                <!-- Producto 5 - Arreglo Aniversario -->
                 <div class="product-card" data-category="ocasion">
                     <img src="img/aniversario.jpg" alt="Arreglo para Aniversario" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Arreglo para Aniversario</h3>
                         <p class="product-price">$420</p>
                         <p class="product-description">Especialmente diseñado para celebrar aniversarios, con flores que simbolizan amor duradero.</p>
-                        <a href="https://wa.me/5215511606332?text=Me%20interesa%20el%20Arreglo%20para%20Aniversario" class="btn" target="_blank">Pedir por WhatsApp</a>
                         <button class="btn add-btn" onclick="agregarAlCarrito('Arreglo para Aniversario', 420)">
-    Agregar al Carrito 🛒
-</button>
+                            Agregar al Carrito 🛒
+                        </button>
                     </div>
                 </div>
                 
-                <!-- Producto 6 - Ramo Cumpleaños -->
                 <div class="product-card" data-category="ocasion">
                     <img src="img/cumpleaños.jpg" alt="Ramo para Cumpleaños" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Ramo para Cumpleaños</h3>
                         <p class="product-price">$380</p>
                         <p class="product-description">Colorido y festivo, perfecto para celebrar un día especial con alegría y color.</p>
-                        <a href="https://wa.me/5215511606332?text=Me%20interesa%20el%20Ramo%20para%20Cumpleaños" class="btn" target="_blank">Pedir por WhatsApp</a>
                         <button class="btn add-btn" onclick="agregarAlCarrito('Ramo para Cumpleaños', 380)">
-    Agregar al Carrito 🛒
-</button>
+                            Agregar al Carrito 🛒
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -169,111 +157,213 @@
     </div>
 
     <div class="cart-modal" id="cartModal">
-        <div class="cart-header">
-            <h3>Tu Pedido 🌺</h3>
-            <span class="close-cart" id="closeCart">&times;</span>
-        </div>
-        <div class="cart-items" id="cartItems">
-            <p class="empty-msg">Tu carrito está vacío</p>
-        </div>
-        <div class="cart-footer">
-            <div class="total">Total: $<span id="cartTotal">0</span></div>
-            <button class="btn-whatsapp" onclick="enviarPedidoWhatsApp()">
-                Confirmar Pedido por WhatsApp 📲
-            </button>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Tu Pedido 🌺</h3>
+                <span class="close-cart" id="closeCart">&times;</span>
+            </div>
+            
+            <div class="cart-items" id="cartItems">
+                <p class="empty-msg">Tu carrito está vacío</p>
+            </div>
+
+            <div class="cart-footer">
+                <div class="total-row">
+                    <span>Total:</span>
+                    <span>$<span id="cartTotal">0</span></span>
+                </div>
+                
+                <div id="paypal-button-container"></div>
+
+                <button id="btnImprimirTicket" class="btn-cash" onclick="generarTicket()">
+                    Pago en Efectivo
+                </button>
+            </div>
         </div>
     </div>
 
     <script>
-        // --- LÓGICA DEL CARRITO ---
+        // --- VARIABLES GLOBALES ---
         let carrito = [];
-        const telefonoTienda = "5215511606332"; // Tu número
 
-        // Elementos del DOM
-        const cartIcon = document.getElementById('cartIcon');
-        const cartModal = document.getElementById('cartModal');
-        const closeCart = document.getElementById('closeCart');
-        const cartItemsContainer = document.getElementById('cartItems');
-        const cartTotalElement = document.getElementById('cartTotal');
-        const cartCountElement = document.getElementById('cartCount');
-
-        // Abrir/Cerrar carrito
-        cartIcon.addEventListener('click', () => cartModal.style.display = 'block');
-        closeCart.addEventListener('click', () => cartModal.style.display = 'none');
-
-        // Función para agregar productos
+        // --- FUNCIONES DEL CARRITO ---
+        
+        // Agregar producto
         function agregarAlCarrito(nombre, precio) {
             carrito.push({ nombre, precio });
             actualizarCarritoUI();
-            alert(`¡${nombre} agregado al carrito!`);
+            
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = "¡Agregado! ✅";
+            btn.style.backgroundColor = "#1b5e20";
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.backgroundColor = ""; 
+            }, 1000);
         }
 
-        // Función para actualizar la interfaz
-        function actualizarCarritoUI() {
-            cartItemsContainer.innerHTML = '';
-            let total = 0;
-
-            if (carrito.length === 0) {
-                cartItemsContainer.innerHTML = '<p class="empty-msg">Tu carrito está vacío</p>';
-            } else {
-                carrito.forEach((item, index) => {
-                    total += item.precio;
-                    const div = document.createElement('div');
-                    div.className = 'cart-item';
-                    div.innerHTML = `
-                        <span>${item.nombre}</span>
-                        <span>$${item.precio} <button onclick="eliminarDelCarrito(${index})" style="color:red;border:none;background:none;cursor:pointer;">🗑️</button></span>
-                    `;
-                    cartItemsContainer.appendChild(div);
-                });
-            }
-
-            cartTotalElement.innerText = total;
-            cartCountElement.innerText = carrito.length;
-        }
-
-        // Eliminar un item
-        function eliminarDelCarrito(index) {
+        // Eliminar producto
+        function eliminarItem(index) {
             carrito.splice(index, 1);
             actualizarCarritoUI();
         }
 
-        // Enviar pedido a WhatsApp
-        function enviarPedidoWhatsApp() {
-            if (carrito.length === 0) return alert("Agrega productos primero.");
-
-            let mensaje = "Hola Florería Orlandito, quiero hacer el siguiente pedido:%0A%0A";
-            let total = 0;
-
-            carrito.forEach(item => {
-                mensaje += `- ${item.nombre} ($${item.precio})%0A`;
-                total += item.precio;
-            });
-
-            mensaje += `%0A*Total a pagar: $${total}*`;
-            
-            window.open(`https://wa.me/${telefonoTienda}?text=${mensaje}`, '_blank');
+        // Calcular total
+        function obtenerTotal() {
+            return carrito.reduce((sum, item) => sum + item.precio, 0);
         }
 
-        // --- TU CÓDIGO ORIGINAL DE FILTRADO (Mantenido) ---
+        // Actualizar la interfaz
+        function actualizarCarritoUI() {
+            const itemsContainer = document.getElementById('cartItems');
+            const totalElement = document.getElementById('cartTotal');
+            const countElement = document.getElementById('cartCount');
+            const paypalContainer = document.getElementById('paypal-button-container');
+            const btnTicket = document.getElementById('btnImprimirTicket');
+            
+            itemsContainer.innerHTML = '';
+            let total = obtenerTotal();
+
+            if (carrito.length === 0) {
+                itemsContainer.innerHTML = '<p class="empty-msg">Tu carrito está vacío 🥀</p>';
+                paypalContainer.style.display = 'none';
+                btnTicket.style.display = 'none';
+            } else {
+                paypalContainer.style.display = 'block';
+                btnTicket.style.display = 'flex'; // Usamos flex para centrar contenido
+                
+                carrito.forEach((item, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'cart-item';
+                    div.innerHTML = `
+                        <span style="flex-grow:1">${item.nombre}</span>
+                        <span style="color:#e91e63; font-weight:bold; margin:0 10px">$${item.precio}</span>
+                        <button onclick="eliminarItem(${index})" style="border:none; background:none; cursor:pointer; font-size:18px">🗑️</button>
+                    `;
+                    itemsContainer.appendChild(div);
+                });
+            }
+
+            totalElement.innerText = total;
+            countElement.innerText = carrito.length;
+        }
+
+        // --- 1. CONFIGURACIÓN DE PAYPAL (Solo Amarillo) ---
+        paypal.Buttons({
+            fundingSource: paypal.FUNDING.PAYPAL,
+            
+            style: {
+                layout: 'vertical',
+                color:  'gold',
+                shape:  'rect',
+                label:  'paypal'
+            },
+
+            createOrder: function(data, actions) {
+                let totalActual = obtenerTotal();
+                if (totalActual === 0) return;
+
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: { value: totalActual },
+                        description: "Compra en Florería Orlandito"
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('¡Pago completado por ' + details.payer.name.given_name + '! Gracias.');
+                    carrito = [];
+                    actualizarCarritoUI();
+                    document.getElementById('cartModal').style.display = 'none';
+                });
+            },
+            onError: function (err) {
+                console.error(err);
+                alert("Error con PayPal. Intente con Efectivo.");
+            }
+        }).render('#paypal-button-container');
+
+        // --- 2. GENERADOR DE TICKET (Efectivo) ---
+        function generarTicket() {
+            if (carrito.length === 0) return alert("El carrito está vacío.");
+
+            const total = obtenerTotal();
+            const fecha = new Date().toLocaleDateString();
+            const hora = new Date().toLocaleTimeString();
+            const folio = Math.floor(Math.random() * 10000) + 1000;
+
+            let ticketContent = `
+                <html>
+                <head>
+                    <title>Ticket de Compra - Florería Orlandito</title>
+                    <style>
+                        body { font-family: 'Courier New', Courier, monospace; width: 300px; margin: 0 auto; padding: 10px; }
+                        /* CAMBIO: Líneas sólidas en lugar de punteadas (dashed -> solid) */
+                        .header { text-align: center; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 10px; }
+                        h2 { margin: 5px 0; font-size: 18px; }
+                        .info { font-size: 12px; margin-bottom: 10px; text-align: center; }
+                        .table { width: 100%; font-size: 12px; }
+                        .table th { text-align: left; border-bottom: 1px solid #000; }
+                        .total-row { border-top: 2px solid #000; font-weight: bold; margin-top: 10px; padding-top: 10px; display: flex; justify-content: space-between; }
+                        .footer { margin-top: 20px; text-align: center; font-size: 10px; border-top: 1px solid #000; padding-top: 10px; }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h2>🌺 Florería Orlandito</h2>
+                        <div class="info">
+                            <p>Central de Abastos, Ayotla</p>
+                            <p>Folio: #${folio}</p>
+                            <p>${fecha} - ${hora}</p>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead><tr><th>CANT.</th><th>DESC.</th><th>$$</th></tr></thead>
+                        <tbody>
+            `;
+
+            carrito.forEach(item => {
+                ticketContent += `<tr><td>1</td><td>${item.nombre}</td><td>$${item.precio}</td></tr>`;
+            });
+
+            ticketContent += `
+                        </tbody>
+                    </table>
+                    <div class="total-row"><span>TOTAL:</span><span>$${total}.00</span></div>
+                    <div class="footer"><p>¡Gracias por su compra!</p><p>*** PAGO EN EFECTIVO ***</p></div>
+                    <script>window.print();<\/script>
+                </body>
+                </html>
+            `;
+
+            const ventana = window.open('', 'IMPRIMIR', 'height=600,width=400');
+            ventana.document.write(ticketContent);
+            ventana.document.close();
+        }
+
+        // --- EVENTOS DEL DOM ---
         document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('cartModal');
+            document.getElementById('cartIcon').addEventListener('click', () => modal.style.display = 'flex');
+            document.getElementById('closeCart').addEventListener('click', () => modal.style.display = 'none');
+            window.addEventListener('click', (e) => { if (e.target == modal) modal.style.display = 'none'; });
+
+            // Filtros (Sin cambios)
             const categoryButtons = document.querySelectorAll('.category-btn');
             const productCards = document.querySelectorAll('.product-card');
-            
             categoryButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     categoryButtons.forEach(btn => btn.classList.remove('active'));
                     this.classList.add('active');
                     const category = this.getAttribute('data-category');
                     productCards.forEach(card => {
-                        if (category === 'all' || card.getAttribute('data-category') === category) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
+                        card.style.display = (category === 'all' || card.getAttribute('data-category') === category) ? 'block' : 'none';
                     });
                 });
             });
+            actualizarCarritoUI();
         });
     </script>
 </body>
