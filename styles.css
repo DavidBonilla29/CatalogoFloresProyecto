@@ -1,4 +1,6 @@
-/* Estilos generales */
+/* =========================================
+   ESTILOS GENERALES
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -139,6 +141,8 @@ header {
 
 .product-info {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-title {
@@ -158,8 +162,10 @@ header {
     color: #666;
     margin-bottom: 15px;
     font-size: 0.9rem;
+    flex-grow: 1; 
 }
 
+/* Botones */
 .btn {
     display: inline-block;
     background: #e91e63;
@@ -170,11 +176,25 @@ header {
     font-weight: bold;
     transition: background 0.3s ease;
     text-align: center;
-    width: 100%;
+    width: auto;
+    border: none;
+    cursor: pointer;
 }
 
 .btn:hover {
     background: #c2185b;
+}
+
+.add-btn {
+    width: 100%;
+    background-color: #2e7d32;
+    margin-top: auto;
+    padding: 12px;
+    font-size: 1rem;
+}
+
+.add-btn:hover {
+    background-color: #1b5e20;
 }
 
 /* Footer */
@@ -227,37 +247,33 @@ footer {
         flex-direction: column;
         text-align: center;
     }
-    
     .contact-info {
         margin-top: 15px;
         text-align: center;
     }
-    
-    .hero h2 {
-        font-size: 2rem;
-    }
-    
-    .hero p {
-        font-size: 1rem;
-    }
+    .hero h2 { font-size: 2rem; }
+    .hero p { font-size: 1rem; }
 }
 
-/* Estilos del Carrito */
+/* =========================================
+   ESTILOS DEL CARRITO (FUSIÓN)
+   ========================================= */
+
 .cart-icon {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25D366; /* Color WhatsApp */
+    bottom: 30px;
+    right: 30px;
+    background-color: #e91e63;
     color: white;
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
+    font-size: 32px;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     z-index: 1000;
     transition: transform 0.3s;
 }
@@ -266,76 +282,124 @@ footer {
 
 #cartCount {
     position: absolute;
-    top: 0;
-    right: 0;
-    background: red;
+    top: -5px;
+    right: -5px;
+    background: #2e7d32;
     color: white;
     font-size: 14px;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    border: 2px solid white;
 }
 
-/* Modal del Carrito */
 .cart-modal {
-    display: none; /* Oculto por defecto */
+    display: none;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 400px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
     z-index: 1001;
-    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-content {
+    background: white;
+    width: 90%;
+    max-width: 450px;
+    border-radius: 15px;
+    padding: 25px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
 }
 
 .cart-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .close-cart {
-    font-size: 28px;
+    font-size: 30px;
     cursor: pointer;
     color: #666;
+    line-height: 1;
 }
 
 .cart-items {
-    max-height: 300px;
+    flex-grow: 1;
     overflow-y: auto;
-    margin: 15px 0;
+    margin-bottom: 20px;
+    min-height: 100px;
 }
 
 .cart-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
-    border-bottom: 1px dashed #ddd;
-    padding-bottom: 5px;
+    align-items: center;
+    padding: 10px 0;
+    /* CAMBIO: Línea sólida suave en lugar de dashed */
+    border-bottom: 1px solid #f0f0f0; 
 }
 
-.btn-whatsapp {
+.cart-footer {
+    border-top: 2px solid #f0f0f0;
+    padding-top: 15px;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Contenedor del Botón de PayPal */
+#paypal-button-container {
     width: 100%;
-    background: #25D366;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
+    margin-bottom: 15px; /* Espacio entre PayPal y el botón de Efectivo */
+    z-index: 1002;
 }
 
-.add-btn {
-    cursor: pointer; /* Para que tus nuevos botones se vean clickeables */
+/* Botón de Pago en Efectivo (Estilo Sólido) */
+.btn-cash {
+    width: 100%;
+    background: #333;
+    color: white;
+    border: none; /* CAMBIO: Se quitó el borde punteado */
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.3s;
+}
+
+.btn-cash:hover {
+    background: #000;
+}
+
+.empty-msg {
+    text-align: center;
+    color: #999;
+    padding: 20px 0;
 }
