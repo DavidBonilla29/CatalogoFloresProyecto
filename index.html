@@ -53,6 +53,9 @@
                         <p class="product-price">$350</p>
                         <p class="product-description">Hermoso ramo de 12 rosas rojas, perfecto para expresar amor y pasión.</p>
                         <a href="https://wa.me/5215511606332?text=Me%20interesa%20el%20Ramo%20de%20Rosas%20Rojas" class="btn" target="_blank">Pedir por WhatsApp</a>
+                        <button class="btn add-btn" onclick="agregarAlCarrito('Ramo de Rosas Rojas', 350)">
+    Agregar al Carrito 🛒
+</button>
                     </div>
                 </div>
                 
@@ -64,6 +67,9 @@
                         <p class="product-price">$550</p>
                         <p class="product-description">Elegante centro de mesa con flores de temporada, ideal para eventos especiales.</p>
                         <a href="https://wa.me/5215511606332?text=Me%20interesa%20el%20Centro%20de%20Mesa%20Elegante" class="btn" target="_blank">Pedir por WhatsApp</a>
+                        <button class="btn add-btn" onclick="agregarAlCarrito('Centro de Mesa Elegante', 550)">
+    Agregar al Carrito 🛒
+</button>
                     </div>
                 </div>
                 
@@ -75,6 +81,9 @@
                         <p class="product-price">$480</p>
                         <p class="product-description">Deliciosa combinación de frutas de temporada en un arreglo especial para regalar.</p>
                         <a href="https://wa.me/5215511606332?text=Me%20interesa%20la%20Canasta%20Frutal%20Especial" class="btn" target="_blank">Pedir por WhatsApp</a>
+                        <button class="btn add-btn" onclick="agregarAlCarrito('Canasta Frutal Especial', 480)">
+    Agregar al Carrito 🛒
+</button>
                     </div>
                 </div>
                 
@@ -86,6 +95,9 @@
                         <p class="product-price">$320</p>
                         <p class="product-description">Colorido ramo con variedad de flores de temporada, perfecto para cualquier ocasión.</p>
                         <a href="https://wa.me/5215511606332?text=Me%20interesa%20el%20Ramo%20Mixto%20de%20Temporada" class="btn" target="_blank">Pedir por WhatsApp</a>
+                        <button class="btn add-btn" onclick="agregarAlCarrito('Ramo Mixto de Temporada', 320)">
+    Agregar al Carrito 🛒
+</button>
                     </div>
                 </div>
                 
@@ -97,6 +109,9 @@
                         <p class="product-price">$420</p>
                         <p class="product-description">Especialmente diseñado para celebrar aniversarios, con flores que simbolizan amor duradero.</p>
                         <a href="https://wa.me/5215511606332?text=Me%20interesa%20el%20Arreglo%20para%20Aniversario" class="btn" target="_blank">Pedir por WhatsApp</a>
+                        <button class="btn add-btn" onclick="agregarAlCarrito('Arreglo para Aniversario', 420)">
+    Agregar al Carrito 🛒
+</button>
                     </div>
                 </div>
                 
@@ -108,6 +123,9 @@
                         <p class="product-price">$380</p>
                         <p class="product-description">Colorido y festivo, perfecto para celebrar un día especial con alegría y color.</p>
                         <a href="https://wa.me/5215511606332?text=Me%20interesa%20el%20Ramo%20para%20Cumpleaños" class="btn" target="_blank">Pedir por WhatsApp</a>
+                        <button class="btn add-btn" onclick="agregarAlCarrito('Ramo para Cumpleaños', 380)">
+    Agregar al Carrito 🛒
+</button>
                     </div>
                 </div>
             </div>
@@ -146,22 +164,107 @@
         </div>
     </footer>
 
+    <div class="cart-icon" id="cartIcon">
+        🛒 <span id="cartCount">0</span>
+    </div>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h3>Tu Pedido 🌺</h3>
+            <span class="close-cart" id="closeCart">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-msg">Tu carrito está vacío</p>
+        </div>
+        <div class="cart-footer">
+            <div class="total">Total: $<span id="cartTotal">0</span></div>
+            <button class="btn-whatsapp" onclick="enviarPedidoWhatsApp()">
+                Confirmar Pedido por WhatsApp 📲
+            </button>
+        </div>
+    </div>
+
     <script>
-        // Filtrado de categorías
+        // --- LÓGICA DEL CARRITO ---
+        let carrito = [];
+        const telefonoTienda = "5215511606332"; // Tu número
+
+        // Elementos del DOM
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const closeCart = document.getElementById('closeCart');
+        const cartItemsContainer = document.getElementById('cartItems');
+        const cartTotalElement = document.getElementById('cartTotal');
+        const cartCountElement = document.getElementById('cartCount');
+
+        // Abrir/Cerrar carrito
+        cartIcon.addEventListener('click', () => cartModal.style.display = 'block');
+        closeCart.addEventListener('click', () => cartModal.style.display = 'none');
+
+        // Función para agregar productos
+        function agregarAlCarrito(nombre, precio) {
+            carrito.push({ nombre, precio });
+            actualizarCarritoUI();
+            alert(`¡${nombre} agregado al carrito!`);
+        }
+
+        // Función para actualizar la interfaz
+        function actualizarCarritoUI() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            if (carrito.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="empty-msg">Tu carrito está vacío</p>';
+            } else {
+                carrito.forEach((item, index) => {
+                    total += item.precio;
+                    const div = document.createElement('div');
+                    div.className = 'cart-item';
+                    div.innerHTML = `
+                        <span>${item.nombre}</span>
+                        <span>$${item.precio} <button onclick="eliminarDelCarrito(${index})" style="color:red;border:none;background:none;cursor:pointer;">🗑️</button></span>
+                    `;
+                    cartItemsContainer.appendChild(div);
+                });
+            }
+
+            cartTotalElement.innerText = total;
+            cartCountElement.innerText = carrito.length;
+        }
+
+        // Eliminar un item
+        function eliminarDelCarrito(index) {
+            carrito.splice(index, 1);
+            actualizarCarritoUI();
+        }
+
+        // Enviar pedido a WhatsApp
+        function enviarPedidoWhatsApp() {
+            if (carrito.length === 0) return alert("Agrega productos primero.");
+
+            let mensaje = "Hola Florería Orlandito, quiero hacer el siguiente pedido:%0A%0A";
+            let total = 0;
+
+            carrito.forEach(item => {
+                mensaje += `- ${item.nombre} ($${item.precio})%0A`;
+                total += item.precio;
+            });
+
+            mensaje += `%0A*Total a pagar: $${total}*`;
+            
+            window.open(`https://wa.me/${telefonoTienda}?text=${mensaje}`, '_blank');
+        }
+
+        // --- TU CÓDIGO ORIGINAL DE FILTRADO (Mantenido) ---
         document.addEventListener('DOMContentLoaded', function() {
             const categoryButtons = document.querySelectorAll('.category-btn');
             const productCards = document.querySelectorAll('.product-card');
             
             categoryButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    // Remover clase active de todos los botones
                     categoryButtons.forEach(btn => btn.classList.remove('active'));
-                    // Agregar clase active al botón clickeado
                     this.classList.add('active');
-                    
                     const category = this.getAttribute('data-category');
-                    
-                    // Mostrar/ocultar productos según categoría
                     productCards.forEach(card => {
                         if (category === 'all' || card.getAttribute('data-category') === category) {
                             card.style.display = 'block';
