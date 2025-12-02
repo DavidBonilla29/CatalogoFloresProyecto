@@ -8,13 +8,14 @@ require 'conexion.php';
 $nombre = $_POST['nombre'];
 $descripcion = $_POST['descripcion'];
 $precio = $_POST['precio'];
+$cantidad= $_POST['cantidad'];
 $imagen_url = $_POST['imagen_url'];
 
 // 3. Preparar la consulta SQL
-$stmt = $conexion->prepare("INSERT INTO productos (nombre, descripcion, precio, imagen_url) VALUES (?, ?, ?, ?)");
+$stmt = $conexion->prepare("INSERT INTO productos (nombre, descripcion, precio,cantidad, imagen_url) VALUES (?, ?, ?, ?, ?)");
 
 // 4. Vincular los datos (s = string, i = integer)
-$stmt->bind_param("ssis", $nombre, $descripcion, $precio, $imagen_url);
+$stmt->bind_param("ssiis", $nombre, $descripcion, $precio,$cantidad, $imagen_url);
 
 // 5. Ejecutar la consulta
 if ($stmt->execute()) {

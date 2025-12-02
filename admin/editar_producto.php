@@ -16,42 +16,59 @@ if ($resultado->num_rows === 1) {
     die("Error: Producto no encontrado.");
 }
 $stmt->close();
-$conexion->close();
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Producto</title>
+    <link rel="stylesheet" href="admin_styles.css">
 </head>
 <body>
+    
+    <header>
+        <h1>Panel de Administración</h1>
+        <nav>
+            <a href="admin_productos.php" class="active">Administrar Productos</a>
+            <!--<a href="admin_pedidos.php">Administrar Pedidos</a>-->
+            <a href="logout.php" style="background-color: #d32f2f; margin-left: 15px;">Cerrar Sesión</a>
+        </nav>
+    </header>
 
-    <h2>Modificar Producto: <?php echo htmlspecialchars($producto['nombre']); ?></h2>
+    <div class="container"> 
 
-    <form action="actualizar_producto.php" method="POST">
-        
-        <input type="hidden" name="id_producto" value="<?php echo $producto['id_producto']; ?>">
+        <h2>Modificar Producto: <?php echo htmlspecialchars($producto['nombre']); ?></h2>
 
-        <label for="nombre">Nombre del producto:</label><br>
-        <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($producto['nombre']); ?>" required>
-        <br><br>
+        <form action="actualizar_producto.php" method="POST">
+            
+            <input type="hidden" name="id_producto" value="<?php echo $producto['id_producto']; ?>">
 
-        <label for="descripcion">Descripción:</label><br>
-        <textarea id="descripcion" name="descripcion" rows="4" cols="50"><?php echo htmlspecialchars($producto['descripcion']); ?></textarea>
-        <br><br>
+            <label for="nombre">Nombre del producto:</label><br>
+            <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($producto['nombre']); ?>" required>
 
-        <label for="precio">Precio:</label><br>
-        <input type="number" id="precio" name="precio" value="<?php echo $producto['precio']; ?>" required>
-        <br><br>
+            <label for="descripcion">Descripción:</label><br>
+            <textarea id="descripcion" name="descripcion" rows="4" cols="50"><?php echo htmlspecialchars($producto['descripcion']); ?></textarea>
 
-        <label for="imagen_url">Ruta de la Imagen:</label><br>
-        <input type="text" id="imagen_url" name="imagen_url" value="<?php echo htmlspecialchars($producto['imagen_url']); ?>">
-        <br><br>
+            <label for="precio">Precio:</label><br>
+            <input type="number" id="precio" name="precio" value="<?php echo $producto['precio']; ?>" required>
 
-        <button type="submit">Actualizar Producto</button>
-        <a href="admin_productos.php">Cancelar</a>
-    </form>
+            <label for="cantidad">Cantidad en stock:</label><br>
+            <input type="number" id="cantidad" name="cantidad" value="<?php echo $producto['cantidad']; ?>" required>
 
-</body>
+            <label for="imagen_url">Ruta de la Imagen:</label><br>
+            <input type="text" id="imagen_url" name="imagen_url" value="<?php echo htmlspecialchars($producto['imagen_url']); ?>">
+            <br>
+            
+            <button type="submit">Actualizar Producto</button>
+            <a href="admin_productos.php" class="btn-eliminar" style="margin-left: 10px; padding: 12px 20px; display: inline-block;">Cancelar</a>
+        </form>
+
+    </div> </body>
 </html>
+
+<?php
+// Cerramos la conexión al final del script, si no se cerró antes.
+$conexion->close();
+?>
