@@ -52,7 +52,7 @@
                         <h3 class="product-title">Ramo de Rosas Rojas</h3>
                         <p class="product-price">$350</p>
                         <p class="product-description">Hermoso ramo de 12 rosas rojas, perfecto para expresar amor y pasión.</p>
-                        <button class="btn add-btn" onclick="agregarAlCarrito('Ramo de Rosas Rojas', 350)">
+                        <button class="btn add-btn" onclick="agregarAlCarrito(1,'Ramo de Rosas Rojas', 350)">
                             Agregar al Carrito 🛒
                         </button>
                     </div>
@@ -64,7 +64,7 @@
                         <h3 class="product-title">Centro de Mesa Elegante</h3>
                         <p class="product-price">$550</p>
                         <p class="product-description">Elegante centro de mesa con flores de temporada, ideal para eventos especiales.</p>
-                        <button class="btn add-btn" onclick="agregarAlCarrito('Centro de Mesa Elegante', 550)">
+                        <button class="btn add-btn" onclick="agregarAlCarrito(2,'Centro de Mesa Elegante', 550)">
                             Agregar al Carrito 🛒
                         </button>
                     </div>
@@ -76,7 +76,7 @@
                         <h3 class="product-title">Canasta Frutal Especial</h3>
                         <p class="product-price">$480</p>
                         <p class="product-description">Deliciosa combinación de frutas de temporada en un arreglo especial para regalar.</p>
-                        <button class="btn add-btn" onclick="agregarAlCarrito('Canasta Frutal Especial', 480)">
+                        <button class="btn add-btn" onclick="agregarAlCarrito(3,'Canasta Frutal Especial', 480)">
                             Agregar al Carrito 🛒
                         </button>
                     </div>
@@ -88,7 +88,7 @@
                         <h3 class="product-title">Ramo Mixto de Temporada</h3>
                         <p class="product-price">$320</p>
                         <p class="product-description">Colorido ramo con variedad de flores de temporada, perfecto para cualquier ocasión.</p>
-                        <button class="btn add-btn" onclick="agregarAlCarrito('Ramo Mixto de Temporada', 320)">
+                        <button class="btn add-btn" onclick="agregarAlCarrito(4,'Ramo Mixto de Temporada', 320)">
                             Agregar al Carrito 🛒
                         </button>
                     </div>
@@ -100,7 +100,7 @@
                         <h3 class="product-title">Arreglo para Aniversario</h3>
                         <p class="product-price">$420</p>
                         <p class="product-description">Especialmente diseñado para celebrar aniversarios, con flores que simbolizan amor duradero.</p>
-                        <button class="btn add-btn" onclick="agregarAlCarrito('Arreglo para Aniversario', 420)">
+                        <button class="btn add-btn" onclick="agregarAlCarrito(5,'Arreglo para Aniversario', 420)">
                             Agregar al Carrito 🛒
                         </button>
                     </div>
@@ -112,7 +112,7 @@
                         <h3 class="product-title">Ramo para Cumpleaños</h3>
                         <p class="product-price">$380</p>
                         <p class="product-description">Colorido y festivo, perfecto para celebrar un día especial con alegría y color.</p>
-                        <button class="btn add-btn" onclick="agregarAlCarrito('Ramo para Cumpleaños', 380)">
+                        <button class="btn add-btn" onclick="agregarAlCarrito(6,'Ramo para Cumpleaños', 380)">
                             Agregar al Carrito 🛒
                         </button>
                     </div>
@@ -150,7 +150,6 @@
             
             <div class="copyright">
                 <p>&copy; 2025 Florería Orlandito - Todos los derechos reservados</p>
-                <p>Desarrollado por TecnoFácil - "La tecnología al alcance de todos"</p>
             </div>
         </div>
     </footer>
@@ -189,11 +188,10 @@
         // --- VARIABLES GLOBALES ---
         let carrito = [];
 
-        // --- FUNCIONES DEL CARRITO ---
-        
-        // Agregar producto
-        function agregarAlCarrito(nombre, precio) {
-            carrito.push({ nombre, precio });
+        // --- 1. MODIFICAR: Ahora recibimos el ID ---
+        function agregarAlCarrito(id, nombre, precio) {
+            // Guardamos el ID, nombre y precio
+            carrito.push({ id: id, nombre: nombre, precio: precio });
             actualizarCarritoUI();
             
             const btn = event.target;
@@ -206,18 +204,15 @@
             }, 1000);
         }
 
-        // Eliminar producto
         function eliminarItem(index) {
             carrito.splice(index, 1);
             actualizarCarritoUI();
         }
 
-        // Calcular total
         function obtenerTotal() {
             return carrito.reduce((sum, item) => sum + item.precio, 0);
         }
 
-        // Actualizar la interfaz
         function actualizarCarritoUI() {
             const itemsContainer = document.getElementById('cartItems');
             const totalElement = document.getElementById('cartTotal');
@@ -234,7 +229,7 @@
                 btnTicket.style.display = 'none';
             } else {
                 paypalContainer.style.display = 'block';
-                btnTicket.style.display = 'flex'; // Usamos flex para centrar contenido
+                btnTicket.style.display = 'flex';
                 
                 carrito.forEach((item, index) => {
                     const div = document.createElement('div');
@@ -252,21 +247,40 @@
             countElement.innerText = carrito.length;
         }
 
-        // --- 1. CONFIGURACIÓN DE PAYPAL (Solo Amarillo) ---
+        // --- NUEVO: Función para enviar datos a PHP y descontar stock ---
+        async function procesarStockEnBD() {
+            try {
+                const datos = new FormData();
+                datos.append('productos_comprados', JSON.stringify(carrito));
+
+                const respuesta = await fetch('procesar_compra.php', {
+                    method: 'POST',
+                    body: datos
+                });
+
+                const resultado = await respuesta.json();
+                
+                if (resultado.success) {
+                    console.log("Stock actualizado correctamente");
+                    return true;
+                } else {
+                    alert("Error actualizando inventario: " + resultado.message);
+                    return false;
+                }
+            } catch (error) {
+                console.error("Error de red:", error);
+                return false;
+            }
+        }
+
+        // --- PAYPAL CONFIG ---
         paypal.Buttons({
             fundingSource: paypal.FUNDING.PAYPAL,
-            
-            style: {
-                layout: 'vertical',
-                color:  'gold',
-                shape:  'rect',
-                label:  'paypal'
-            },
+            style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'paypal' },
 
             createOrder: function(data, actions) {
                 let totalActual = obtenerTotal();
                 if (totalActual === 0) return;
-
                 return actions.order.create({
                     purchase_units: [{
                         amount: { value: totalActual },
@@ -275,7 +289,11 @@
                 });
             },
             onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
+                return actions.order.capture().then(async function(details) {
+                    // 1. Primero descontamos el stock
+                    await procesarStockEnBD();
+                    
+                    // 2. Luego mostramos éxito
                     alert('¡Pago completado por ' + details.payer.name.given_name + '! Gracias.');
                     carrito = [];
                     actualizarCarritoUI();
@@ -284,76 +302,88 @@
             },
             onError: function (err) {
                 console.error(err);
-                alert("Error con PayPal. Intente con Efectivo.");
+                alert("Error con PayPal.");
             }
         }).render('#paypal-button-container');
 
-        // --- 2. GENERADOR DE TICKET (Efectivo) ---
-        function generarTicket() {
-            if (carrito.length === 0) return alert("El carrito está vacío.");
+        // --- TICKET (EFECTIVO) ---
+        // --- TICKET (EFECTIVO) ---
+async function generarTicket() {
+    if (carrito.length === 0) return alert("El carrito está vacío.");
 
-            const total = obtenerTotal();
-            const fecha = new Date().toLocaleDateString();
-            const hora = new Date().toLocaleTimeString();
-            const folio = Math.floor(Math.random() * 10000) + 1000;
+    // PASO 1: Intentar descontar el stock en la BD
+    // La palabra 'await' hace que el código espere a que PHP responda antes de seguir
+    const stockActualizado = await procesarStockEnBD();
+    
+    // Si hubo error en la BD, detenemos todo y NO imprimimos ticket
+    if (!stockActualizado) return; 
 
-            let ticketContent = `
-                <html>
-                <head>
-                    <title>Ticket de Compra - Florería Orlandito</title>
-                    <style>
-                        body { font-family: 'Courier New', Courier, monospace; width: 300px; margin: 0 auto; padding: 10px; }
-                        /* CAMBIO: Líneas sólidas en lugar de punteadas (dashed -> solid) */
-                        .header { text-align: center; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 10px; }
-                        h2 { margin: 5px 0; font-size: 18px; }
-                        .info { font-size: 12px; margin-bottom: 10px; text-align: center; }
-                        .table { width: 100%; font-size: 12px; }
-                        .table th { text-align: left; border-bottom: 1px solid #000; }
-                        .total-row { border-top: 2px solid #000; font-weight: bold; margin-top: 10px; padding-top: 10px; display: flex; justify-content: space-between; }
-                        .footer { margin-top: 20px; text-align: center; font-size: 10px; border-top: 1px solid #000; padding-top: 10px; }
-                    </style>
-                </head>
-                <body>
-                    <div class="header">
-                        <h2>🌺 Florería Orlandito</h2>
-                        <div class="info">
-                            <p>Central de Abastos, Ayotla</p>
-                            <p>Folio: #${folio}</p>
-                            <p>${fecha} - ${hora}</p>
-                        </div>
-                    </div>
-                    <table class="table">
-                        <thead><tr><th>CANT.</th><th>DESC.</th><th>$$</th></tr></thead>
-                        <tbody>
-            `;
+    // PASO 2: Si el stock se actualizó bien, generamos el ticket visual
+    const total = obtenerTotal();
+    const fecha = new Date().toLocaleDateString();
+    const hora = new Date().toLocaleTimeString();
+    const folio = Math.floor(Math.random() * 10000) + 1000;
 
-            carrito.forEach(item => {
-                ticketContent += `<tr><td>1</td><td>${item.nombre}</td><td>$${item.precio}</td></tr>`;
-            });
+    let ticketContent = `
+        <html>
+        <head>
+            <title>Ticket de Compra - Florería Orlandito</title>
+            <style>
+                body { font-family: 'Courier New', Courier, monospace; width: 300px; margin: 0 auto; padding: 10px; }
+                .header { text-align: center; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 10px; }
+                h2 { margin: 5px 0; font-size: 18px; }
+                .info { font-size: 12px; margin-bottom: 10px; text-align: center; }
+                .table { width: 100%; font-size: 12px; }
+                .table th { text-align: left; border-bottom: 1px solid #000; }
+                .total-row { border-top: 2px solid #000; font-weight: bold; margin-top: 10px; padding-top: 10px; display: flex; justify-content: space-between; }
+                .footer { margin-top: 20px; text-align: center; font-size: 10px; border-top: 1px solid #000; padding-top: 10px; }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <h2>🌺 Florería Orlandito</h2>
+                <div class="info">
+                    <p>Central de Abastos, Ayotla</p>
+                    <p>Folio: #${folio}</p>
+                    <p>${fecha} - ${hora}</p>
+                </div>
+            </div>
+            <table class="table">
+                <thead><tr><th>CANT.</th><th>DESC.</th><th>$$</th></tr></thead>
+                <tbody>
+    `;
 
-            ticketContent += `
-                        </tbody>
-                    </table>
-                    <div class="total-row"><span>TOTAL:</span><span>$${total}.00</span></div>
-                    <div class="footer"><p>¡Gracias por su compra!</p><p>*** PAGO EN EFECTIVO ***</p></div>
-                    <script>window.print();<\/script>
-                </body>
-                </html>
-            `;
+    carrito.forEach(item => {
+        ticketContent += `<tr><td>1</td><td>${item.nombre}</td><td>$${item.precio}</td></tr>`;
+    });
 
-            const ventana = window.open('', 'IMPRIMIR', 'height=600,width=400');
-            ventana.document.write(ticketContent);
-            ventana.document.close();
-        }
+    ticketContent += `
+                </tbody>
+            </table>
+            <div class="total-row"><span>TOTAL:</span><span>$${total}.00</span></div>
+            <div class="footer"><p>¡Gracias por su compra!</p><p>*** PAGO EN EFECTIVO ***</p></div>
+            <script>window.print();<\/script>
+        </body>
+        </html>
+    `;
 
-        // --- EVENTOS DEL DOM ---
+    // Limpiar carrito y cerrar modal
+    carrito = [];
+    actualizarCarritoUI();
+    document.getElementById('cartModal').style.display = 'none';
+
+    const ventana = window.open('', 'IMPRIMIR', 'height=600,width=400');
+    ventana.document.write(ticketContent);
+    ventana.document.close();
+}
+
+        // --- EVENTOS DE INTERFAZ (IGUAL QUE ANTES) ---
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('cartModal');
             document.getElementById('cartIcon').addEventListener('click', () => modal.style.display = 'flex');
             document.getElementById('closeCart').addEventListener('click', () => modal.style.display = 'none');
             window.addEventListener('click', (e) => { if (e.target == modal) modal.style.display = 'none'; });
 
-            // Filtros (Sin cambios)
             const categoryButtons = document.querySelectorAll('.category-btn');
             const productCards = document.querySelectorAll('.product-card');
             categoryButtons.forEach(button => {
